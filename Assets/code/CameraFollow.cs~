@@ -12,24 +12,21 @@ class CameraFollow : MonoBehaviour
     public float minBoundaryDistance;
     Vector3 velocity = Vector3.zero;
     // Start is called before the first frame update
-    void
-    Start()
+    void Start()
     {
         Vector3 Pos = new Vector3();
-        Pos.x = PlayerTransform.position.x;
-        Pos.x = PlayerTransform.position.y + height;
-        Pos.x = PlayerTransform.position.y - depth;
-        transform.position = Vector3.SmoothDamp(transform.position,
-                                                Pos,
-                                                ref velocity,
-                                                smoothing);
+	Pos.x = PlayerTransform.position.x;
+	Pos.x = PlayerTransform.position.y + height;
+	Pos.x = PlayerTransform.position.y - depth;
+	transform.position = Vector3.SmoothDamp(transform.position,
+						Pos,
+						ref velocity,
+						smoothing);
     }
 
     // Update is called once per frame
-    void
-    Update()
+    void Update()
     {
 
     }
-
 }
