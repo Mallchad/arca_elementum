@@ -1,0 +1,42 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+class Weapon : MonoBehaviour
+{
+    [SerializeField]
+    int ammoRemaining = 30;
+    [SerializeField]
+    int ammoMaximum = 30;
+    float fireRate;
+    GameObject BulletSpawnPoint;
+    UnityEngine.UI.Text ammoDisplay;
+    // Start is called before the first frame update
+    void Start()
+    {
+	BulletSpawnPoint = GameObject.FindWithTag("bullet_spawn_point");
+	ammoDisplay = GameObject
+	    .Find("AmmoCounter")
+	    .GetComponent<UnityEngine.UI.Text>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        ammoDisplay.text = ammoRemaining + "/" + ammoMaximum;
+    }
+    bool Fire()
+    {
+	if (ammoRemaining > 0)
+	{
+	    GameObject projectile =
+		Instantiate(Bullet,
+			    BulletSpawnPoint.transform.position,
+			    BulletSpawnPoint.transform.rotation);
+	    // Play a sound
+	    // Play an animation
+	    // Play particle effects
+	    // Make a reload command
+	}
+    }
+}
