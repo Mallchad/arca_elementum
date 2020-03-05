@@ -10,12 +10,13 @@ class Weapon : MonoBehaviour
     int ammoMaximum = 30;
     float fireRate;
     GameObject BulletSpawnPoint;
+    public GameObject Bullet;
     UnityEngine.UI.Text ammoDisplay;
     // Start is called before the first frame update
     void Start()
     {
-	BulletSpawnPoint = GameObject.FindWithTag("bullet_spawn_point");
-	ammoDisplay = GameObject
+	    BulletSpawnPoint = GameObject.FindWithTag("bullet_spawn_point");
+	    ammoDisplay = GameObject
 	    .Find("AmmoCounter")
 	    .GetComponent<UnityEngine.UI.Text>();
     }
@@ -25,7 +26,7 @@ class Weapon : MonoBehaviour
     {
         ammoDisplay.text = ammoRemaining + "/" + ammoMaximum;
     }
-    bool Fire()
+    public bool fire()
     {
 	if (ammoRemaining > 0)
 	{
@@ -37,6 +38,8 @@ class Weapon : MonoBehaviour
 	    // Play an animation
 	    // Play particle effects
 	    // Make a reload command
+	    return true;
 	}
+	return false;
     }
 }

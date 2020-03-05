@@ -4,15 +4,21 @@ using UnityEngine;
 
 class Player : MonoBehaviour
 {
+    [SerializeField]
     public Camera viewpoint;
     Rigidbody rb;
     Vector3 moveInput;
     Vector3 moveVelocity;
+    bool isFiring = false;
+    float timeOfLastShot = Time.time;
+    [SerializeField]
+    Weapon EquippedWeapon;
     // Start is called before the first frame update
     void
     Start()
     {
-        rb = this.GetComponent<Rigidbody>();
+	EquippedWeapon = FindObjectOfType<Weapon>();
+	rb = this.GetComponent<Rigidbody>();
     }
     // Update is called once per frame
     void
@@ -46,10 +52,23 @@ class Player : MonoBehaviour
                                 0f,
                                 Input.GetAxisRaw("Vertical"));
         moveVelocity = moveInput + moveVelocity;
+	if (Input.GetMouseButtonDown(0))
+	{
+	    isFiring = true;
+	}
     }
     void
-    FixedUpdate()
+    fixedUpdate()
     {//
         rb.velocity = moveVelocity;
+    }
+    void firingWeapon()
+    {
+	if (isFiring)
+	{
+	    float timeSinceLastShot = timeOfLastShot - Time.time;
+	    EquippedWeapon.fire();
+	}
+
     }
 }
